@@ -1,0 +1,14 @@
+<h1>List of post's user</h1>
+
+<%= @list.each do |lis| %>
+<p>
+<%= lis.title %>
+<%= lis.text %>
+<%= link_to 'Show', lis %>
+</p>
+<% end %>
+
+<br><br>
+<%= link_to 'Back', users_path %>
+
+

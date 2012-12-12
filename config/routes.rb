@@ -1,4 +1,20 @@
-RailsTest::Application.routes.draw do
+Raz::Application.routes.draw do
+  devise_for :users
+
+  resources :users
+  resources :tags
+
+  get 'users/:id/list' => 'users#list'
+
+  resources :posts do
+    resources :comments
+  end
+
+  match '/auth_in' => 'users#auth_in'
+#  match '/auth_out' =>  'users#auth_out'
+  root :to => 'users#index'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +64,7 @@ RailsTest::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+
 
   # See how all your routes lay out with "rake routes"
 

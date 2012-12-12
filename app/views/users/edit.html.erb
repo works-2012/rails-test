@@ -1,0 +1,15 @@
+<h1>Editing user</h1>
+
+  <% if user_signed_in? %>
+    <% if current_user.id == @user.id %>
+      <%= render 'form' %>
+    <% else %>
+      У Вас недостаточно прав для этого действия!
+    <% end %>
+  <% else %>
+    Представьтесь системе!
+  <% end %>
+
+<br>
+
+<%= link_to 'Show', @user %> | <%= link_to 'Back', users_path %>

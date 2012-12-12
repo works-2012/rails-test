@@ -1,0 +1,52 @@
+<h3>Comments</h3>
+
+<table border=0>
+
+<% @post.comments.each do |comment| %>
+
+<tr><td>
+
+<table border=0 cellpadding=10>
+
+<tr>
+  <th>
+      <% if comment.user_id.nil? %>
+        Anonimus
+      <% else %>
+        <% if User.exists?(comment.user_id) %>
+          <%= User.find_by_id(comment.user_id).name %>
+        <% else %>
+          unsigned
+        <% end %>
+     <% end %>
+  </th>
+
+  <td rowspan=2>
+    <%= comment.text %>
+  </td>
+
+</tr><tr>
+
+  <td>
+    <%= comment.created_at %> 
+  </td>
+
+</tr>
+</table>
+
+<hr>
+</td></tr>
+<% end %>
+</table>
+<h3>Add a comment:</h3>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+    <% unless current_user.nil? %>
+      <%= f.hidden_field :user_id, { :value => current_user.id } %>
+    <% end %>
+  <p>
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

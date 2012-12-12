@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-RailsTest::Application.load_tasks
+Raz::Application.load_tasks
